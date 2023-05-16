@@ -33,6 +33,16 @@ const memberRowStyle = (record, index) => {
       backgroundColor: "white",
     };
   }
+  if (record.TypeContrat === "CDI") {
+    if (nbDay < -1) {
+      return {
+        backgroundColor: "#fff380",
+      };
+    } else if (nbDay < 153)
+      return {
+        backgroundColor: "#ffcbd0",
+      };
+  }
 };
 
 export const MemberList = (props) => {

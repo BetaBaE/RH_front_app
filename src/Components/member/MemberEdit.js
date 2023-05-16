@@ -26,13 +26,14 @@ export const MemberEdit = () => {
           sx={{
             width: "30rem",
           }}
-          validate={required()}
+          disabled
         />
         <TextInput
           source="Matricule"
           sx={{
             width: "30rem",
           }}
+          disabled
         />
         <TextInput
           source="NomComplet"

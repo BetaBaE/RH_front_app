@@ -6,7 +6,7 @@ import {
   TextField,
 } from "react-admin";
 import { makeStyles } from "@material-ui/styles";
-// import assuranceFilter from './assuranceFilter';
+// import assuranceFilter from "./assuranceFilter";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -28,9 +28,10 @@ const AssuranceRow = (record, index) => {
       return {
         backgroundColor: "#ffcbd0",
       };
+  } else if (record.assure === "oui") {
+    record.dateAssurance = "";
   }
 };
-
 export const AssuranceList = ({ ...props }) => {
   const classes = useStyles(props);
   return (
@@ -46,7 +47,12 @@ export const AssuranceList = ({ ...props }) => {
             (
               (new Date(record.dateAssurance) - new Date()) /
               (1000 * 24 * 60 * 60)
-            ).toFixed()
+            ).toFixed() > 0
+              ? (
+                  (new Date(record.dateAssurance) - new Date()) /
+                  (1000 * 24 * 60 * 60)
+                ).toFixed()
+              : ""
           }
         />
         <DateField source="DateEmbauche" />
