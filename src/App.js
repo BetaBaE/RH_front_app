@@ -22,7 +22,7 @@ function App(props) {
   return (
     <Admin
       {...props}
-      dataProvider={restProvider("http://10.111.1.230:8081")}
+      dataProvider={restProvider("http://localhost:8081")}
       // layout={CustomLayout}
       theme={theme}
       // layout={MyLayout}

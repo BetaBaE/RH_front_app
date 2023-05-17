@@ -2,11 +2,19 @@ import { useState } from "react";
 import {
   DateInput,
   Edit,
+  SaveButton,
   SelectInput,
   SimpleForm,
   TextInput,
+  Toolbar,
   required,
 } from "react-admin";
+
+const EditToolbar = (props) => (
+  <Toolbar {...props}>
+    <SaveButton id="save" />
+  </Toolbar>
+);
 
 export const AssuranceEdit = () => {
   const [assure, setAssurance] = useState(0);
@@ -15,7 +23,7 @@ export const AssuranceEdit = () => {
   }
   return (
     <Edit>
-      <SimpleForm>
+      <SimpleForm toolbar={<EditToolbar/>}>
         <TextInput
           disabled
           source="cin"

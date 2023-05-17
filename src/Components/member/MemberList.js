@@ -19,37 +19,31 @@ const memberRowStyle = (record, index) => {
   let dateFin = new Date(record.DateFin);
   let nbDay = (dateFin - today) / (1000 * 24 * 60 * 60);
   console.log(nbDay);
-  if (record.TypeContrat === "CDD") {
-    if (nbDay < -1) {
-      return {
-        backgroundColor: "#fff380",
-      };
-    } else if (nbDay < 31)
-      return {
-        backgroundColor: "#ffcbd0",
-      };
 
-    return {
-      backgroundColor: "white",
-    };
-  }
-  if (record.TypeContrat === "CDI") {
-    if (nbDay < -1) {
+
+    if (nbDay < -10) {
+      return {
+        backgroundColor: "#fff",
+      }
+    }
+    else if (nbDay < -1) {
       return {
         backgroundColor: "#fff380",
       };
-    } else if (nbDay < 153)
+    } else if (nbDay < 30)
       return {
         backgroundColor: "#ffcbd0",
-      };
-  }
+    };
+  
 };
+
 
 export const MemberList = (props) => {
   const classes = useStyles(props);
   return (
     <List filters={<MemberFilter />} className={classes.root}>
       <Datagrid
+        bulkActionButtons={false}
         rowStyle={memberRowStyle}
         rowClick="edit"
         {...props}

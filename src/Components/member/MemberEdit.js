@@ -3,11 +3,20 @@ import {
   DateInput,
   Edit,
   ReferenceInput,
+  SaveButton,
   SelectInput,
   SimpleForm,
   TextInput,
+  Toolbar,
   required,
 } from "react-admin";
+
+
+const EditToolbar = (props) => (
+  <Toolbar {...props}>
+    <SaveButton id="save" />
+  </Toolbar>
+);
 
 export const MemberEdit = () => {
   const [contract, setContract] = useState("");
@@ -20,7 +29,7 @@ export const MemberEdit = () => {
   }
   return (
     <Edit>
-      <SimpleForm>
+      <SimpleForm toolbar={<EditToolbar/>}>
         <TextInput
           source="id"
           sx={{
@@ -77,7 +86,7 @@ export const MemberEdit = () => {
           label={
             contract === "CDI"
               ? "Date Fin Periode D'essai"
-              : "DATE FIN DE CONTRAT"
+              : "Date Fin De Contrat"
           }
           sx={{
             width: "30rem",

@@ -30,7 +30,7 @@ export const MemberCreate = () => {
         <TextInput
           label="CIN"
           source="id"
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -38,7 +38,7 @@ export const MemberCreate = () => {
         />
         <TextInput
           source="Matricule"
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -46,7 +46,7 @@ export const MemberCreate = () => {
         />
         <TextInput
           source="NomComplet"
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -55,7 +55,7 @@ export const MemberCreate = () => {
         <ReferenceInput source="Qualification" reference="Qualification">
           <SelectInput
             optionText="libelle"
-            autocomplete="false"
+            autoComplete='off'
             sx={{
               width: "30rem",
             }}
@@ -73,7 +73,7 @@ export const MemberCreate = () => {
             handleSetContract(e);
           }}
           source="TypeContrat"
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -81,7 +81,7 @@ export const MemberCreate = () => {
         <DateInput
           source="DateEmbauche"
           validate={[required()]}
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -91,9 +91,9 @@ export const MemberCreate = () => {
           label={
             contract === "CDI"
               ? "Date Fin Periode D'essai"
-              : "DATE FIN DE CONTRAT"
+              : "Date Fin De Contrat"
           }
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -101,7 +101,7 @@ export const MemberCreate = () => {
         <TextInput
           source="Discription"
           multiline
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -114,7 +114,7 @@ export const MemberCreate = () => {
           validate={[required()]}
           source="SituationActif"
           defaultValue={"Actif"}
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -127,7 +127,7 @@ export const MemberCreate = () => {
           validate={[required()]}
           source="assurance"
           onChange={handleSetAssurance}
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}
@@ -135,7 +135,7 @@ export const MemberCreate = () => {
         <DateInput
           source="dateAssurance"
           label="DATE ALERT ASSURANCES"
-          autocomplete="false"
+          autoComplete='off'
           sx={{
             width: "30rem",
           }}

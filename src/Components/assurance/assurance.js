@@ -36,7 +36,7 @@ export const AssuranceList = ({ ...props }) => {
   const classes = useStyles(props);
   return (
     <List filters={<assuranceFilter />} className={classes.root} {...props}>
-      <Datagrid rowStyle={AssuranceRow} rowClick="edit">
+      <Datagrid bulkActionButtons={false} rowStyle={AssuranceRow} rowClick="edit">
         <TextField source="id" />
         <TextField source="cin" />
         <TextField source="assure" />

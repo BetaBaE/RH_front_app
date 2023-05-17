@@ -29,8 +29,8 @@ export const RenouvellementList = ({ ...props }) => {
         </ReferenceField>
         <TextField sortable={false} source="Discription" />
         <DateField source="Renouvellement" />
-        <DateField source="DateInsertion" />
         <DateField source="DateFin" />
+        <DateField source="DateInsertion" />
       </Datagrid>
     </List>
   );
