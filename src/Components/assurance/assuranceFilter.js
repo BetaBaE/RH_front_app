@@ -6,8 +6,8 @@ import {
 
 
 
-const assuranceFilter = (props) => {
-    (
+const AssuranceFilter = (props) => {
+   return (
         <Filter {...props}>
            <TextInput label="CIN" source="cin" />
            <TextInput source="assure" />
@@ -16,4 +16,4 @@ const assuranceFilter = (props) => {
     )
 }
 
-export default assuranceFilter
+export default AssuranceFilter

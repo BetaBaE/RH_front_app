@@ -6,6 +6,7 @@ import {
   TextField,
 } from "react-admin";
 import { makeStyles } from "@material-ui/styles";
+import AssuranceFilter from "./assuranceFilter";
 // import assuranceFilter from "./assuranceFilter";
 
 const useStyles = makeStyles(() => ({
@@ -35,7 +36,7 @@ const AssuranceRow = (record, index) => {
 export const AssuranceList = ({ ...props }) => {
   const classes = useStyles(props);
   return (
-    <List filters={<assuranceFilter />} className={classes.root} {...props}>
+    <List filters={<AssuranceFilter />} className={classes.root} {...props}>
       <Datagrid bulkActionButtons={false} rowStyle={AssuranceRow} rowClick="edit">
         <TextField source="id" />
         <TextField source="cin" />
