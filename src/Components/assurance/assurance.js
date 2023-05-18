@@ -3,6 +3,7 @@ import {
   DateField,
   FunctionField,
   List,
+  ReferenceField,
   TextField,
 } from "react-admin";
 import { makeStyles } from "@material-ui/styles";
@@ -37,8 +38,11 @@ export const AssuranceList = ({ ...props }) => {
   const classes = useStyles(props);
   return (
     <List filters={<AssuranceFilter />} className={classes.root} {...props}>
-      <Datagrid bulkActionButtons={false} rowStyle={AssuranceRow} rowClick="edit">
-        <TextField source="id" />
+      <Datagrid
+        bulkActionButtons={false}
+        rowStyle={AssuranceRow}
+        rowClick="edit"
+      >
         <TextField source="cin" />
         <TextField source="assure" />
         <TextField source="NomComplet" />
@@ -56,6 +60,9 @@ export const AssuranceList = ({ ...props }) => {
               : ""
           }
         />
+        <ReferenceField source="Qualification" reference="Qualification">
+          <TextField source="libelle" />
+        </ReferenceField>
         <DateField source="DateEmbauche" />
         <DateField source="dateAssurance" />
         <DateField source="DateFin" />
