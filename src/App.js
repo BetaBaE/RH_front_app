@@ -7,7 +7,6 @@ import { ImUsers } from "react-icons/im";
 import { QualificationList } from "./Components/qualification/QualificationList";
 import { QualificationCreate } from "./Components/qualification/QualificationCreate";
 import { QualificationEdit } from "./Components/qualification/QualificationEdit";
-import Dashboard from "./Components/dashboard/dashboard";
 import { defaultTheme } from "react-admin";
 import { RenouvellementList } from "./Components/renouvellement/RnouvellementList";
 import { AssuranceEdit } from "./Components/assurance/assuranceEdit";
@@ -22,7 +21,7 @@ function App(props) {
   return (
     <Admin
       {...props}
-      dataProvider={restProvider("http://localhost:8081")}
+      dataProvider={restProvider("http://10.111.1.230:8081")}
       // layout={CustomLayout}
       theme={theme}
       // layout={MyLayout}

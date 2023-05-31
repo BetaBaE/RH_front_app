@@ -20,23 +20,19 @@ const memberRowStyle = (record, index) => {
   let nbDay = (dateFin - today) / (1000 * 24 * 60 * 60);
   console.log(nbDay);
 
-
-    if (nbDay < -10) {
-      return {
-        backgroundColor: "#fff",
-      }
-    }
-    else if (nbDay < -1) {
-      return {
-        backgroundColor: "#fff380",
-      };
-    } else if (nbDay < 30)
-      return {
-        backgroundColor: "#ffcbd0",
+  if (nbDay < -10) {
+    return {
+      backgroundColor: "#fff",
     };
-  
+  } else if (nbDay < -1) {
+    return {
+      backgroundColor: "#fff380",
+    };
+  } else if (nbDay < 30)
+    return {
+      backgroundColor: "#ffcbd0",
+    };
 };
-
 
 export const MemberList = (props) => {
   const classes = useStyles(props);
