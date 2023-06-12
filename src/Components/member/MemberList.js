@@ -54,7 +54,7 @@ export const MemberList = (props) => {
         <TextField source="TypeContrat" />
         <DateField source="DateEmbauche" />
         <DateField source="DateFin" />
-        <TextField source="Discription" />
+        <TextField source="Discription" label="Description" />
         <TextField source="SituationActif" />
         <DateField source="Renouvellement" />
       </Datagrid>
