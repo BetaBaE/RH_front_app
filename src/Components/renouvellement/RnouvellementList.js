@@ -22,13 +22,13 @@ export const RenouvellementList = ({ ...props }) => {
       // sort={{ field: "DateInsertion", order: "ASC" }}
     >
       <Datagrid bulkActionButtons={false}>
-        <TextField source="id" />
+        {/* <TextField source="id" /> */}
         <TextField source="cin" />
         <TextField source="Matricule" />
         <ReferenceField source="Qualification" reference="Qualification">
           <TextField source="libelle" />
         </ReferenceField>
-        <TextField sortable={false} source="Discription" />
+        <TextField sortable={false} source="Discription" label="Description" />
         <DateField source="Renouvellement" />
         <DateField source="DateFin" />
         <DateField source="DateInsertion" />
