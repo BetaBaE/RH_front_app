@@ -11,25 +11,25 @@ import {
   required,
 } from "react-admin";
 
-
 const EditToolbar = (props) => (
   <Toolbar {...props}>
     <SaveButton id="save" />
   </Toolbar>
 );
 
-export const MemberEdit = () => {
-  const [contract, setContract] = useState("");
+export const MemberEdit = (record) => {
+  const [contract, setContract] = useState();
   function handleSetContract(event) {
     setContract(event.target.value);
   }
-  const [assure, setAssurance] = useState("");
-  function handleSetAssurance(event) {
-    setAssurance(event.target.value);
-  }
+
+  // const [assure, setAssurance] = useState("");
+  // function handleSetAssurance(event) {
+  //   setAssurance(event.target.value);
+  // }
   return (
     <Edit>
-      <SimpleForm toolbar={<EditToolbar/>}>
+      <SimpleForm toolbar={<EditToolbar />}>
         <TextInput
           source="id"
           sx={{
@@ -95,6 +95,7 @@ export const MemberEdit = () => {
         />
         <TextInput
           source="Discription"
+          label="Description"
           multiline
           sx={{
             width: "30rem",
@@ -112,7 +113,7 @@ export const MemberEdit = () => {
             width: "30rem",
           }}
         />
-        <SelectInput
+        {/* <SelectInput
           choices={[
             { id: "oui", name: "oui" },
             { id: "non", name: "non" },
@@ -132,7 +133,7 @@ export const MemberEdit = () => {
             width: "30rem",
           }}
           disabled={assure === "oui"}
-        />
+        />*/}
         <DateInput
           source="Renouvellement"
           sx={{
