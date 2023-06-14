@@ -28,6 +28,7 @@ export const RenouvellementList = ({ ...props }) => {
           <TextField source="libelle" />
         </ReferenceField>
         <TextField sortable={false} source="Discription" />
+        <DateField source="DateEmbauche" />
         <DateField source="Renouvellement" />
         <DateField source="DateFin" />
         <DateField source="DateInsertion" />
