@@ -24,13 +24,8 @@ function App(props) {
   return (
     <Admin
       {...props}
-<<<<<<< HEAD
       dataProvider={restProvider("http://10.111.1.95:8081")}
       authProvider={auth}
-=======
-      dataProvider={restProvider("http://10.111.1.230:8081")}
-      // layout={CustomLayout}
->>>>>>> 0b2269d68749e6fadc8431749cfb35b057a9f58e
       theme={theme}
       // layout={MyLayout}
       // dashboard={Dashboard}
