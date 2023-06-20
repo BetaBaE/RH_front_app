@@ -17,7 +17,7 @@ const EditToolbar = (props) => (
   </Toolbar>
 );
 
-export const MemberEdit = (record) => {
+export const MemberEdit = (props) => {
   const [contract, setContract] = useState();
   function handleSetContract(event) {
     setContract(event.target.value);
@@ -64,6 +64,7 @@ export const MemberEdit = (record) => {
           choices={[
             { id: "CDI", name: "CDI" },
             { id: "CDD", name: "CDD" },
+            { id: "STAGE", name: "STAGE" },
           ]}
           validate={required()}
           onChange={(e) => {

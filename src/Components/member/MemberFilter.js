@@ -17,6 +17,7 @@ const MemberFilter = (props) => (
       choices={[
         { id: "CDI", name: "CDI" },
         { id: "CDD", name: "CDD" },
+        { id: "STAGE", name: "STAGE" },
       ]}
       source="TypeContrat"
     />
