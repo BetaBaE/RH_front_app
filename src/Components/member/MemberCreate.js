@@ -20,7 +20,7 @@ export const MemberCreate = () => {
     setAssurance(event.target.value);
   }
   const validateCin = regex(
-    /^[A-Z]{1,2}[0-9]{5,6}$/,
+    /^[A-Z]{1,2}[0-9]{2,6}$/,
     "entrez une cin valide AA 12345"
   );
 
@@ -67,6 +67,7 @@ export const MemberCreate = () => {
           choices={[
             { id: "CDI", name: "CDI" },
             { id: "CDD", name: "CDD" },
+            { id: "STAGE", name: "STAGE" },
           ]}
           validate={[required()]}
           onChange={(e) => {
