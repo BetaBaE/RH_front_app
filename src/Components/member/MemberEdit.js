@@ -23,7 +23,7 @@ export const MemberEdit = (props) => {
   function handleSetContract(event) {
     setContract(event.target.value);
   }
-  const [renouvellement, setRenouvellement] = useState();
+  const [renouvellement, setRenouvellement] = useState("");
   function handleSetRenouvellement(event) {
     setRenouvellement(event.target.value);
   }

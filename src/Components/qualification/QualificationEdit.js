@@ -1,7 +1,12 @@
-﻿import { Edit, SimpleForm, TextInput } from "react-admin";
+﻿import { Edit, SaveButton, SimpleForm, TextInput, Toolbar } from "react-admin";
 
-export const QualificationEdit = () => (
-  <Edit>
+const EditToolbar = (props) => (
+  <Toolbar {...props}>
+    <SaveButton id="save" />
+  </Toolbar>
+);
+export const QualificationEdit = (props) => (
+  <Edit Toolbar={<EditToolbar />}>
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="libelle" />
