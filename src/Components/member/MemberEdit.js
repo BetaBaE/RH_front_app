@@ -1,4 +1,5 @@
-﻿import { useState } from "react";
+﻿import { hasUnreliableEmptyValue } from "@testing-library/user-event/dist/utils";
+import { useState } from "react";
 import {
   DateInput,
   Edit,
@@ -21,6 +22,10 @@ export const MemberEdit = (props) => {
   const [contract, setContract] = useState();
   function handleSetContract(event) {
     setContract(event.target.value);
+  }
+  const [renouvellement, setRenouvellement] = useState();
+  function handleSetRenouvellement(event) {
+    setRenouvellement(event.target.value);
   }
 
   // const [assure, setAssurance] = useState("");
@@ -140,7 +145,18 @@ export const MemberEdit = (props) => {
           sx={{
             width: "30rem",
           }}
+          onChange={(e) => {
+            handleSetRenouvellement(e);
+          }}
           disabled={contract === "CDI"}
+        />
+        <DateInput
+          source="datefinRenouvellement"
+          label="date fin renouvellement"
+          sx={{
+            width: "30rem",
+          }}
+          disabled={renouvellement === ""}
         />
       </SimpleForm>
     </Edit>
