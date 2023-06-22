@@ -68,9 +68,7 @@ export const MemberList = (props) => {
         <TextField source="Matricule" />
         <TextField label="CIN" source="id" />
         <TextField source="NomComplet" />
-        <ReferenceField source="Qualification" reference="Qualification">
-          <TextField source="libelle" />
-        </ReferenceField>
+        <TextField source="Qualification" />
         <TextField source="TypeContrat" />
         <DateField source="DateEmbauche" />
         <DateField source="DateFin" />
