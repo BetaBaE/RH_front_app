@@ -7,6 +7,7 @@
 
 const RenouvellementFilter = (props) => (
   <Filter {...props}>
+    <TextInput source="NomComplet" />
     <TextInput label="CIN" source="id" />
     <TextInput source="Matricule" />
     <ReferenceInput source="Qualification" reference="Qualification">
