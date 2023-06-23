@@ -1,10 +1,4 @@
-﻿import {
-  Datagrid,
-  DateField,
-  List,
-  ReferenceField,
-  TextField,
-} from "react-admin";
+﻿import { Datagrid, DateField, List, TextField } from "react-admin";
 import { makeStyles } from "@material-ui/styles";
 import MemberFilter from "./MemberFilter";
 
@@ -20,30 +14,18 @@ const memberRowStyle = (record, index) => {
   let datefinRenouvellement = new Date(record.datefinRenouvellement);
   let nbDay = (dateFin - today) / (1000 * 24 * 60 * 60);
   let nbfr = (datefinRenouvellement - today) / (1000 * 24 * 60 * 60);
-  console.log(nbDay);
+  console.log(nbfr);
 
-  if (nbDay < -10) {
-    return {
-      backgroundColor: "#fff",
-    };
-  } else if (nbDay < -1) {
-    return {
-      backgroundColor: "#fff380",
-    };
-  } else if (nbDay < 30)
-    return {
-      backgroundColor: "#ffcbd0",
-    };
-  else if (datefinRenouvellement !== "") {
-    if (nbfr < -10) {
+  if (datefinRenouvellement !== "") {
+    if (nbfr < -10 && nbDay < -10) {
       return {
         backgroundColor: "#fff",
       };
-    } else if (nbfr < -1) {
+    } else if (nbfr < -1 && nbDay < -1) {
       return {
         backgroundColor: "#fff380",
       };
-    } else if (nbfr < 30)
+    } else if (nbfr < 30 && nbDay < 30)
       return {
         backgroundColor: "#ffcbd0",
       };
@@ -52,6 +34,18 @@ const memberRowStyle = (record, index) => {
       backgroundColor: "#fff",
     };
   }
+  // if (nbDay < -10) {
+  //   return {
+  //     backgroundColor: "#fff",
+  //   };
+  // } else if (nbDay < -1) {
+  //   return {
+  //     backgroundColor: "#fff380",
+  //   };
+  // } else if (nbDay < 30)
+  //   return {
+  //     backgroundColor: "#ffcbd0",
+  //   };
 };
 
 export const MemberList = (props) => {
