@@ -24,6 +24,7 @@ export const RenouvellementList = ({ ...props }) => {
       <Datagrid bulkActionButtons={false}>
         {/* <TextField source="id" /> */}
         <TextField source="cin" />
+        <TextField source="NomComplet" />
         <TextField source="Matricule" />
         <ReferenceField source="Qualification" reference="Qualification">
           <TextField source="libelle" />
