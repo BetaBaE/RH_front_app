@@ -19,7 +19,7 @@ const EditToolbar = (props) => (
 );
 
 export const MemberEdit = (props) => {
-  const [contract, setContract] = useState();
+  const [contract, setContract] = useState("CDI");
   function handleSetContract(event) {
     setContract(event.target.value);
   }
@@ -97,7 +97,7 @@ export const MemberEdit = (props) => {
           sx={{
             width: "30rem",
           }}
-          disabled={contract === "CDI"}
+          disabled={!contract}
         />
         <TextInput
           source="Discription"
