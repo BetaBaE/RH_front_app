@@ -21,7 +21,7 @@ export const MemberCreate = () => {
   }
   const validateCin = regex(
     /^[A-Z]{1,2}[0-9]{2,6}$/,
-    "entrez une cin valide AA 12345"
+    "entrez une cin valide AA12345"
   );
 
   return (
