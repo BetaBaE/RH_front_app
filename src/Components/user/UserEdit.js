@@ -19,6 +19,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+/*
+the crypted values :
+
+Admin RH : gKIJQelDba8s4YdO
+Assit RH : FlOpM57clI8qFthm
+*/
+
 const EditToolbar = (props) => (
   <Toolbar {...props}>
     <SaveButton id="save" />
@@ -47,8 +54,8 @@ export const UserEdit = (props) => {
           className={classes.autocomplete}
           source="Role"
           choices={[
-            { id: "administration rh", name: "Administration RH" },
-            { id: "assistante rh", name: "Assistante RH" },
+            { id: "gKIJQelDba8s4YdO", name: "Administration RH" },
+            { id: "FlOpM57clI8qFthm", name: "Assistante RH" },
             //   { id: "photography", name: "Photography" },
           ]}
         />

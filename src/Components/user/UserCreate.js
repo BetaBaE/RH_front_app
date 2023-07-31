@@ -18,8 +18,8 @@ export const UserCreate = () => (
         source="role"
         allowEmpty
         choices={[
-          { id: "administration rh", name: "Administration RH" },
-          { id: "assistante rh", name: "Assistante RH" },
+          { id: "gKIJQelDba8s4YdO", name: "Administration RH" },
+          { id: "FlOpM57clI8qFthm", name: "Assistante RH" },
 
           //   { id: "photography", name: "Photography" },
         ]}

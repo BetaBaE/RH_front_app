@@ -31,8 +31,8 @@ function App(props) {
       // dashboard={Dashboard}
     >
       {(permissions) => [
-        permissions === "administration rh" ||
-        permissions === "assistante rh" ? (
+        permissions === "gKIJQelDba8s4YdO" ||
+        permissions === "FlOpM57clI8qFthm" ? (
           <Resource
             name="members"
             list={MemberList}
@@ -41,8 +41,8 @@ function App(props) {
             icon={ImUsers}
           />
         ) : null,
-        permissions === "administration rh" ||
-        permissions === "assistante rh" ? (
+        permissions === "gKIJQelDba8s4YdO" ||
+        permissions === "FlOpM57clI8qFthm" ? (
           <Resource
             name="qualification"
             list={QualificationList}
@@ -52,8 +52,8 @@ function App(props) {
           />
         ) : null,
 
-        permissions === "administration rh" ||
-        permissions === "assistante rh" ? (
+        permissions === "gKIJQelDba8s4YdO" ||
+        permissions === "FlOpM57clI8qFthm" ? (
           <Resource
             name="renouvellement"
             list={RenouvellementList}
@@ -64,8 +64,8 @@ function App(props) {
           />
         ) : null,
 
-        permissions === "administration rh" ||
-        permissions === "assistante rh" ? (
+        permissions === "gKIJQelDba8s4YdO" ||
+        permissions === "FlOpM57clI8qFthm" ? (
           <Resource
             name="assurances"
             list={AssuranceList}
@@ -75,7 +75,7 @@ function App(props) {
             // icon={ImUsers}
           />
         ) : null,
-        permissions === "administration rh" ? (
+        permissions === "gKIJQelDba8s4YdO" ? (
           <Resource
             name="users"
             list={UserList}
