@@ -16,20 +16,14 @@ import { UserList } from "./Components/user/UserList";
 import { UserEdit } from "./Components/user/UserEdit";
 import { auth } from "./authProvider";
 function App(props) {
-  // const createPath = useCreatePath();
-  console.log(defaultTheme);
-  const theme = {
-    ...defaultTheme,
-  };
   return (
     <Admin
-      {...props}
-      dataProvider={restProvider("http://10.111.1.95:8081")}
-      authProvider={auth}
-      theme={theme}
-      // layout={MyLayout}
-      // dashboard={Dashboard}
-    >
+    authProvider={auth}
+    {...props}
+    dataProvider={restProvider("http://10.111.1.95:8081")}
+    //  layout={MyLayout}
+    darkTheme={{ palette: { mode: "dark" } }}
+  >
       {(permissions) => [
         permissions === "gKIJQelDba8s4YdO" ||
         permissions === "FlOpM57clI8qFthm" ? (
@@ -88,6 +82,8 @@ function App(props) {
       ]}
     </Admin>
   );
-}
+  };
+  
+
 
 export default App;
