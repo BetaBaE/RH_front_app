@@ -147,7 +147,7 @@ export const MemberEdit = (props) => {
           onChange={(e) => {
             handleSetRenouvellement(e);
           }}
-          disabled={contract === "CDI"}
+          
         />
         <DateInput
           source="datefinRenouvellement"
