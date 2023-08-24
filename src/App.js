@@ -3,11 +3,13 @@ import restProvider from "ra-data-simple-rest";
 import { MemberList } from "./Components/member/MemberList";
 import { MemberCreate } from "./Components/member/MemberCreate";
 import { MemberEdit } from "./Components/member/MemberEdit";
-import { ImUsers } from "react-icons/im";
+import { ImPrinter } from "react-icons/im";
+import { BsBriefcase, BsPersonLinesFill } from "react-icons/bs";
+import { AiOutlineHistory, AiOutlineUser, AiOutlineUserSwitch } from "react-icons/ai";
+ import {IoMedkitOutline} from "react-icons/io5"
 import { QualificationList } from "./Components/qualification/QualificationList";
 import { QualificationCreate } from "./Components/qualification/QualificationCreate";
 import { QualificationEdit } from "./Components/qualification/QualificationEdit";
-import { defaultTheme } from "react-admin";
 import { RenouvellementList } from "./Components/renouvellement/RnouvellementList";
 import { AssuranceEdit } from "./Components/assurance/assuranceEdit";
 import { AssuranceList } from "./Components/assurance/assurance";
@@ -15,6 +17,7 @@ import { UserCreate } from "./Components/user/UserCreate";
 import { UserList } from "./Components/user/UserList";
 import { UserEdit } from "./Components/user/UserEdit";
 import { auth } from "./authProvider";
+import PrintPdf from "./Components/print/PrintPdf";
 function App(props) {
   return (
     <Admin
@@ -25,6 +28,16 @@ function App(props) {
     darkTheme={{ palette: { mode: "dark" } }}
   >
       {(permissions) => [
+                permissions === "gKIJQelDba8s4YdO" ? (
+                  <Resource
+                    name="users"
+                    list={UserList}
+                    create={UserCreate}
+                    edit={UserEdit}
+                    // create={QualificationCreate}
+                    icon={AiOutlineUser}
+                  />
+                ) : null,
         permissions === "gKIJQelDba8s4YdO" ||
         permissions === "FlOpM57clI8qFthm" ? (
           <Resource
@@ -32,7 +45,7 @@ function App(props) {
             list={MemberList}
             create={MemberCreate}
             edit={MemberEdit}
-            icon={ImUsers}
+            icon={BsPersonLinesFill}
           />
         ) : null,
         permissions === "gKIJQelDba8s4YdO" ||
@@ -42,7 +55,7 @@ function App(props) {
             list={QualificationList}
             create={QualificationCreate}
             edit={QualificationEdit}
-            // icon={ImUsers}
+            icon={BsBriefcase}
           />
         ) : null,
 
@@ -54,7 +67,7 @@ function App(props) {
 
             // edit={QualificationEdit}
             // create={QualificationCreate}
-            // icon={ImUsers}
+            icon={AiOutlineHistory}
           />
         ) : null,
 
@@ -66,19 +79,18 @@ function App(props) {
             // create={AssurancesCreate}
             edit={AssuranceEdit}
             // create={QualificationCreate}
-            // icon={ImUsers}
+            icon={IoMedkitOutline}
           />
         ) : null,
-        permissions === "gKIJQelDba8s4YdO" ? (
-          <Resource
-            name="users"
-            list={UserList}
-            create={UserCreate}
-            edit={UserEdit}
-            // create={QualificationCreate}
-            // icon={ImUsers}
-          />
-        ) : null,
+
+        <Resource
+        name="print"
+        list={PrintPdf}
+     
+        // create={QualificationCreate}
+        icon={ImPrinter}
+      />
+
       ]}
     </Admin>
   );
