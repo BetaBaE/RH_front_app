@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import "./style.css";
 
 const PrintPdf = () => {
-  let apiUrl = "http://localhost:8081";
+  let apiUrl = "http://10.111.1.95:8081";
   const [ficheInsertion, setFicheInsertion] = useState([
     {
       id: null,
