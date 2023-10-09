@@ -1,12 +1,12 @@
-import { Admin, Resource } from "react-admin";
+import { Admin, Layout, Resource } from "react-admin";
 import restProvider from "ra-data-simple-rest";
 import { MemberList } from "./Components/member/MemberList";
 import { MemberCreate } from "./Components/member/MemberCreate";
 import { MemberEdit } from "./Components/member/MemberEdit";
 import { ImPrinter } from "react-icons/im";
 import { BsBriefcase, BsPersonLinesFill } from "react-icons/bs";
-import { AiOutlineHistory, AiOutlineUser, AiOutlineUserSwitch } from "react-icons/ai";
- import {IoMedkitOutline} from "react-icons/io5"
+import { AiOutlineHistory, AiOutlineUser } from "react-icons/ai";
+import { IoMedkitOutline } from "react-icons/io5";
 import { QualificationList } from "./Components/qualification/QualificationList";
 import { QualificationCreate } from "./Components/qualification/QualificationCreate";
 import { QualificationEdit } from "./Components/qualification/QualificationEdit";
@@ -18,26 +18,27 @@ import { UserList } from "./Components/user/UserList";
 import { UserEdit } from "./Components/user/UserEdit";
 import { auth } from "./authProvider";
 import PrintPdf from "./Components/print/PrintPdf";
+
 function App(props) {
   return (
     <Admin
-    authProvider={auth}
-    {...props}
-    dataProvider={restProvider("http://10.111.1.95:8081")}
-    //  layout={MyLayout}
-    darkTheme={{ palette: { mode: "dark" } }}
-  >
+      authProvider={auth}
+      {...props}
+      dataProvider={restProvider("http://10.111.1.95:8081")}
+      // layout={MyLayout}
+      darkTheme={{ palette: { mode: "dark" } }}
+    >
       {(permissions) => [
-                permissions === "gKIJQelDba8s4YdO" ? (
-                  <Resource
-                    name="users"
-                    list={UserList}
-                    create={UserCreate}
-                    edit={UserEdit}
-                    // create={QualificationCreate}
-                    icon={AiOutlineUser}
-                  />
-                ) : null,
+        permissions === "gKIJQelDba8s4YdO" ? (
+          <Resource
+            name="users"
+            list={UserList}
+            create={UserCreate}
+            edit={UserEdit}
+            // create={QualificationCreate}
+            icon={AiOutlineUser}
+          />
+        ) : null,
         permissions === "gKIJQelDba8s4YdO" ||
         permissions === "FlOpM57clI8qFthm" ? (
           <Resource
@@ -64,7 +65,6 @@ function App(props) {
           <Resource
             name="renouvellement"
             list={RenouvellementList}
-
             // edit={QualificationEdit}
             // create={QualificationCreate}
             icon={AiOutlineHistory}
@@ -82,20 +82,18 @@ function App(props) {
             icon={IoMedkitOutline}
           />
         ) : null,
-
-        <Resource
-        name="print"
-        list={PrintPdf}
-     
-        // create={QualificationCreate}
-        icon={ImPrinter}
-      />
-
+        permissions === "gKIJQelDba8s4YdO" ||
+        permissions === "FlOpM57clI8qFthm" ? (
+          <Resource
+            name="print"
+            list={PrintPdf}
+            // create={QualificationCreate}
+            icon={ImPrinter}
+          />
+        ) : null,
       ]}
     </Admin>
   );
-  };
-  
-
+}
 
 export default App;

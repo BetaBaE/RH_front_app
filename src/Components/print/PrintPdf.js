@@ -1,10 +1,10 @@
 import { Box } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import './style.css'
+import "./style.css";
 
 const PrintPdf = () => {
-  let apiUrl = "http://10.111.1.95:8081"
+  let apiUrl = "http://localhost:8081";
   const [ficheInsertion, setFicheInsertion] = useState([
     {
       id: null,
@@ -15,12 +15,10 @@ const PrintPdf = () => {
   const [selectCin, setSelectCin] = useState();
   console.log(setSelectCin);
   useEffect(() => {
-
     fetch(`${apiUrl}/Members`)
-
       .then((response) => response.json())
       .then((json) => setFicheInsertion(json));
-  },[]);
+  }, []);
   const showLoadingPdf = (json) => {
     let jsonPath = "file:" + json.replaceAll("\\", "/");
     Swal.fire({
@@ -30,9 +28,8 @@ const PrintPdf = () => {
       allowOutsideClick: false,
       allowEscapeKey: false,
     });
-    console.log('pppww',json)
-  }
-  return  (
+  };
+  return (
     <Box component="span" display="flex" justifyContent="center" m={1}>
       <form>
         <select
@@ -48,7 +45,7 @@ const PrintPdf = () => {
           </option>
           {ficheInsertion.map((member) => {
             return (
-              <option key={member.id}  value={member.id}>
+              <option key={member.id} value={member.id}>
                 {member.NomComplet} - {member.id}
               </option>
             );
@@ -112,5 +109,6 @@ const PrintPdf = () => {
         </div>
       </form>
     </Box>
-  )}
-export default PrintPdf
+  );
+};
+export default PrintPdf;
