@@ -55,7 +55,11 @@ export const MemberEdit = (props) => {
           }}
           validate={required()}
         />
-        <ReferenceInput source="Qualification" reference="Qualification">
+        <ReferenceInput
+          source="Qualification"
+          reference="Qualification"
+          perPage={200}
+        >
           <SelectInput
             optionText="libelle"
             sx={{
@@ -147,7 +151,6 @@ export const MemberEdit = (props) => {
           onChange={(e) => {
             handleSetRenouvellement(e);
           }}
-          
         />
         <DateInput
           source="datefinRenouvellement"

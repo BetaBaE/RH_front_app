@@ -52,7 +52,11 @@ export const MemberCreate = () => {
           }}
           validate={[required()]}
         />
-        <ReferenceInput source="Qualification" reference="Qualification">
+        <ReferenceInput
+          source="Qualification"
+          reference="Qualification"
+          perPage={200}
+        >
           <SelectInput
             optionText="libelle"
             autoComplete="off"
@@ -61,6 +65,12 @@ export const MemberCreate = () => {
             }}
             validate={[required()]}
           />
+          {/* <AutocompleteInput
+            optionText="libelle"
+            sx={{
+              width: "30rem",
+            }}
+          /> */}
         </ReferenceInput>
 
         <SelectInput

@@ -1,4 +1,4 @@
-import { Admin, Layout, Resource } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import restProvider from "ra-data-simple-rest";
 import { MemberList } from "./Components/member/MemberList";
 import { MemberCreate } from "./Components/member/MemberCreate";
@@ -82,15 +82,15 @@ function App(props) {
             icon={IoMedkitOutline}
           />
         ) : null,
-        permissions === "gKIJQelDba8s4YdO" ||
-        permissions === "FlOpM57clI8qFthm" ? (
-          <Resource
-            name="print"
-            list={PrintPdf}
-            // create={QualificationCreate}
-            icon={ImPrinter}
-          />
-        ) : null,
+        //   permissions === "gKIJQelDba8s4YdO" ||
+        //   permissions === "FlOpM57clI8qFthm" ? (
+        //     <Resource
+        //       name="print"
+        //       list={PrintPdf}
+        //       // create={QualificationCreate}
+        //       icon={ImPrinter}
+        //     />
+        //   ) : null,
       ]}
     </Admin>
   );
