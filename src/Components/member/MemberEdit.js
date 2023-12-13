@@ -3,7 +3,6 @@ import {
   AutocompleteInput,
   DateInput,
   Edit,
-  ReferenceInput,
   SaveButton,
   SelectInput,
   SimpleForm,
@@ -53,10 +52,7 @@ export const MemberEdit = (props) => {
   });
 
   console.log(qualification);
-  // const [assure, setAssurance] = useState("");
-  // function handleSetAssurance(event) {
-  //   setAssurance(event.target.value);
-  // }
+
   return (
     <Edit>
       <SimpleForm toolbar={<EditToolbar />}>
@@ -116,23 +112,6 @@ export const MemberEdit = (props) => {
           defaultValue={"Actif"}
           className={classes.inputSize}
         />
-        {/* <SelectInput
-          choices={[
-            { id: "oui", name: "oui" },
-            { id: "non", name: "non" },
-          ]}
-          validate={[required()]}
-          source="assurance"
-          defaultValue={"non"}
-          onChange={handleSetAssurance}
-      
-        />
-        <DateInput
-          source="DateFin"
-          label="DATE ALERT ASSURANCES"
-      
-          disabled={assure === "oui"}
-        />*/}
         <DateInput
           source="Renouvellement"
           onChange={(e) => {
