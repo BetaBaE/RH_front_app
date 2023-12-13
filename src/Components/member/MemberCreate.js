@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
   Create,
   DateInput,
@@ -8,9 +8,19 @@ import {
   TextInput,
   required,
   regex,
+  AutocompleteInput,
 } from "react-admin";
+import { getQualification } from "../../Global/getAssets.mjs";
+import { makeStyles } from "@material-ui/styles";
 
+const useStyles = makeStyles(() => ({
+  inputSize: {
+    width: "40%",
+  },
+}));
 export const MemberCreate = () => {
+  const classes = useStyles();
+
   const [contract, setContract] = useState("");
   function handleSetContract(event) {
     setContract(event.target.value);
@@ -19,10 +29,26 @@ export const MemberCreate = () => {
   function handleSetAssurance(event) {
     setAssurance(event.target.value);
   }
+  const [qualification, setQualification] = useState([]);
+  useEffect(() => {
+    getQualification()
+      .then((data) => {
+        setQualification(data);
+      })
+      .catch((error) => {
+        console.error("Error in fetching data:", error);
+      });
+  }, []);
+
   const validateCin = regex(
     /^[A-Z]{1,2}[0-9]{2,6}$/,
     "entrez une cin valide AA12345"
   );
+  const qualification_choices = qualification.map((item) => {
+    let id = item.id;
+    let name = item.libelle;
+    return { id, name };
+  });
 
   return (
     <Create>
@@ -31,6 +57,7 @@ export const MemberCreate = () => {
           label="CIN"
           source="id"
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -39,6 +66,7 @@ export const MemberCreate = () => {
         <TextInput
           source="Matricule"
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -47,31 +75,17 @@ export const MemberCreate = () => {
         <TextInput
           source="NomComplet"
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
           validate={[required()]}
         />
-        <ReferenceInput
+        <AutocompleteInput
           source="Qualification"
-          reference="Qualification"
-          perPage={200}
-        >
-          <SelectInput
-            optionText="libelle"
-            autoComplete="off"
-            sx={{
-              width: "30rem",
-            }}
-            validate={[required()]}
-          />
-          {/* <AutocompleteInput
-            optionText="libelle"
-            sx={{
-              width: "30rem",
-            }}
-          /> */}
-        </ReferenceInput>
+          className={classes.inputSize}
+          choices={qualification_choices}
+        />
 
         <SelectInput
           choices={[
@@ -83,6 +97,7 @@ export const MemberCreate = () => {
           onChange={(e) => {
             handleSetContract(e);
           }}
+          className={classes.inputSize}
           source="TypeContrat"
           autoComplete="off"
           sx={{
@@ -91,6 +106,7 @@ export const MemberCreate = () => {
         />
         <DateInput
           source="DateEmbauche"
+          className={classes.inputSize}
           validate={[required()]}
           autoComplete="off"
           sx={{
@@ -99,6 +115,7 @@ export const MemberCreate = () => {
         />
         <DateInput
           source="DateFin"
+          className={classes.inputSize}
           label={
             contract === "CDI"
               ? "Date Fin Periode D'essai"
@@ -111,6 +128,7 @@ export const MemberCreate = () => {
         />
         <TextInput
           source="Discription"
+          className={classes.inputSize}
           label="Description"
           multiline
           autoComplete="off"
@@ -127,6 +145,7 @@ export const MemberCreate = () => {
           source="SituationActif"
           defaultValue={"Actif"}
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -136,6 +155,7 @@ export const MemberCreate = () => {
             { id: "oui", name: "oui" },
             { id: "non", name: "non" },
           ]}
+          className={classes.inputSize}
           validate={[required()]}
           source="assurance"
           defaultValue={"non"}
@@ -152,6 +172,7 @@ export const MemberCreate = () => {
           sx={{
             width: "30rem",
           }}
+          className={classes.inputSize}
           disabled={assure === "oui"}
         />
       </SimpleForm>

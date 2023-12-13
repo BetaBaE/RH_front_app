@@ -1,8 +1,8 @@
-﻿import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
+  AutocompleteInput,
   DateInput,
   Edit,
-  ReferenceInput,
   SaveButton,
   SelectInput,
   SimpleForm,
@@ -10,14 +10,22 @@ import {
   Toolbar,
   required,
 } from "react-admin";
+import { getQualification } from "../../Global/getAssets.mjs";
+import { makeStyles } from "@material-ui/styles";
 
 const EditToolbar = (props) => (
   <Toolbar {...props}>
     <SaveButton id="save" />
   </Toolbar>
 );
+const useStyles = makeStyles(() => ({
+  inputSize: {
+    width: "40%",
+  },
+}));
 
 export const MemberEdit = (props) => {
+  const classes = useStyles();
   const [contract, setContract] = useState("CDI");
   function handleSetContract(event) {
     setContract(event.target.value);
@@ -27,47 +35,39 @@ export const MemberEdit = (props) => {
     setRenouvellement(event.target.value);
   }
 
-  // const [assure, setAssurance] = useState("");
-  // function handleSetAssurance(event) {
-  //   setAssurance(event.target.value);
-  // }
+  const [qualification, setQualification] = useState([]);
+  useEffect(() => {
+    getQualification()
+      .then((data) => {
+        setQualification(data);
+      })
+      .catch((error) => {
+        console.error("Error in fetching data:", error);
+      });
+  }, []);
+  const qualification_choices = qualification.map((item) => {
+    let id = item.id;
+    let name = item.libelle;
+    return { id, name };
+  });
+
+  console.log(qualification);
+
   return (
     <Edit>
       <SimpleForm toolbar={<EditToolbar />}>
-        <TextInput
-          source="id"
-          sx={{
-            width: "30rem",
-          }}
-          disabled
-        />
-        <TextInput
-          source="Matricule"
-          sx={{
-            width: "30rem",
-          }}
-          disabled
-        />
+        <TextInput source="id" className={classes.inputSize} disabled />
+        <TextInput source="Matricule" className={classes.inputSize} disabled />
         <TextInput
           source="NomComplet"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           validate={required()}
         />
-        <ReferenceInput
+        <AutocompleteInput
           source="Qualification"
-          reference="Qualification"
-          perPage={200}
-        >
-          <SelectInput
-            optionText="libelle"
-            sx={{
-              width: "30rem",
-            }}
-            validate={required()}
-          />
-        </ReferenceInput>
+          choices={qualification_choices}
+          className={classes.inputSize}
+        />
         <SelectInput
           choices={[
             { id: "CDI", name: "CDI" },
@@ -79,15 +79,11 @@ export const MemberEdit = (props) => {
             handleSetContract(e);
           }}
           source="TypeContrat"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
         />
         <DateInput
           source="DateEmbauche"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           validate={required()}
         />
         <DateInput
@@ -97,18 +93,14 @@ export const MemberEdit = (props) => {
               ? "Date Fin Periode D'essai"
               : "Date Fin De Contrat"
           }
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           disabled={!contract}
         />
         <TextInput
           source="Discription"
           label="Description"
           multiline
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
         />
         <SelectInput
           choices={[
@@ -118,46 +110,19 @@ export const MemberEdit = (props) => {
           validate={required()}
           source="SituationActif"
           defaultValue={"Actif"}
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
         />
-        {/* <SelectInput
-          choices={[
-            { id: "oui", name: "oui" },
-            { id: "non", name: "non" },
-          ]}
-          validate={[required()]}
-          source="assurance"
-          defaultValue={"non"}
-          onChange={handleSetAssurance}
-          sx={{
-            width: "30rem",
-          }}
-        />
-        <DateInput
-          source="DateFin"
-          label="DATE ALERT ASSURANCES"
-          sx={{
-            width: "30rem",
-          }}
-          disabled={assure === "oui"}
-        />*/}
         <DateInput
           source="Renouvellement"
-          sx={{
-            width: "30rem",
-          }}
           onChange={(e) => {
             handleSetRenouvellement(e);
           }}
+          className={classes.inputSize}
         />
         <DateInput
           source="datefinRenouvellement"
           label="date fin renouvellement"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           disabled={renouvellement === ""}
         />
       </SimpleForm>
