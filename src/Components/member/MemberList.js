@@ -14,7 +14,6 @@ const memberRowStyle = (record, index) => {
   let datefinRenouvellement = new Date(record.datefinRenouvellement);
   let nbDay = (dateFin - today) / (1000 * 24 * 60 * 60);
   let nbfr = (datefinRenouvellement - today) / (1000 * 24 * 60 * 60);
-  console.log(nbfr);
 
   if (datefinRenouvellement !== "") {
     if (nbfr < -10 && nbDay < -10) {
@@ -34,18 +33,6 @@ const memberRowStyle = (record, index) => {
       backgroundColor: "#fff",
     };
   }
-  // if (nbDay < -10) {
-  //   return {
-  //     backgroundColor: "#fff",
-  //   };
-  // } else if (nbDay < -1) {
-  //   return {
-  //     backgroundColor: "#fff380",
-  //   };
-  // } else if (nbDay < 30)
-  //   return {
-  //     backgroundColor: "#ffcbd0",
-  //   };
 };
 
 export const MemberList = (props) => {
@@ -57,7 +44,6 @@ export const MemberList = (props) => {
         rowStyle={memberRowStyle}
         rowClick="edit"
         {...props}
-        // sort={{ field: "id", order: "DESC" }}
       >
         <TextField source="Matricule" />
         <TextField label="CIN" source="id" />
