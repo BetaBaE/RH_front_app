@@ -12,14 +12,21 @@ import {
   required,
 } from "react-admin";
 import { getQualification } from "../../Global/getAssets.mjs";
+import { makeStyles } from "@material-ui/styles";
 
 const EditToolbar = (props) => (
   <Toolbar {...props}>
     <SaveButton id="save" />
   </Toolbar>
 );
+const useStyles = makeStyles(() => ({
+  inputSize: {
+    width: "40%",
+  },
+}));
 
 export const MemberEdit = (props) => {
+  const classes = useStyles();
   const [contract, setContract] = useState("CDI");
   function handleSetContract(event) {
     setContract(event.target.value);
@@ -53,31 +60,17 @@ export const MemberEdit = (props) => {
   return (
     <Edit>
       <SimpleForm toolbar={<EditToolbar />}>
-        <TextInput
-          source="id"
-          sx={{
-            width: "30rem",
-          }}
-          disabled
-        />
-        <TextInput
-          source="Matricule"
-          sx={{
-            width: "30rem",
-          }}
-          disabled
-        />
+        <TextInput source="id" className={classes.inputSize} disabled />
+        <TextInput source="Matricule" className={classes.inputSize} disabled />
         <TextInput
           source="NomComplet"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           validate={required()}
         />
         <AutocompleteInput
           source="Qualification"
           choices={qualification_choices}
-          sx={{ width: "37%" }}
+          className={classes.inputSize}
         />
         <SelectInput
           choices={[
@@ -90,15 +83,11 @@ export const MemberEdit = (props) => {
             handleSetContract(e);
           }}
           source="TypeContrat"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
         />
         <DateInput
           source="DateEmbauche"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           validate={required()}
         />
         <DateInput
@@ -108,18 +97,14 @@ export const MemberEdit = (props) => {
               ? "Date Fin Periode D'essai"
               : "Date Fin De Contrat"
           }
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           disabled={!contract}
         />
         <TextInput
           source="Discription"
           label="Description"
           multiline
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
         />
         <SelectInput
           choices={[
@@ -129,9 +114,7 @@ export const MemberEdit = (props) => {
           validate={required()}
           source="SituationActif"
           defaultValue={"Actif"}
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
         />
         {/* <SelectInput
           choices={[
@@ -142,33 +125,25 @@ export const MemberEdit = (props) => {
           source="assurance"
           defaultValue={"non"}
           onChange={handleSetAssurance}
-          sx={{
-            width: "30rem",
-          }}
+      
         />
         <DateInput
           source="DateFin"
           label="DATE ALERT ASSURANCES"
-          sx={{
-            width: "30rem",
-          }}
+      
           disabled={assure === "oui"}
         />*/}
         <DateInput
           source="Renouvellement"
-          sx={{
-            width: "30rem",
-          }}
           onChange={(e) => {
             handleSetRenouvellement(e);
           }}
+          className={classes.inputSize}
         />
         <DateInput
           source="datefinRenouvellement"
           label="date fin renouvellement"
-          sx={{
-            width: "30rem",
-          }}
+          className={classes.inputSize}
           disabled={renouvellement === ""}
         />
       </SimpleForm>

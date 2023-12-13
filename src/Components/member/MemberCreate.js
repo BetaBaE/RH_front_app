@@ -11,8 +11,16 @@ import {
   AutocompleteInput,
 } from "react-admin";
 import { getQualification } from "../../Global/getAssets.mjs";
+import { makeStyles } from "@material-ui/styles";
 
+const useStyles = makeStyles(() => ({
+  inputSize: {
+    width: "40%",
+  },
+}));
 export const MemberCreate = () => {
+  const classes = useStyles();
+
   const [contract, setContract] = useState("");
   function handleSetContract(event) {
     setContract(event.target.value);
@@ -49,6 +57,7 @@ export const MemberCreate = () => {
           label="CIN"
           source="id"
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -57,6 +66,7 @@ export const MemberCreate = () => {
         <TextInput
           source="Matricule"
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -65,6 +75,7 @@ export const MemberCreate = () => {
         <TextInput
           source="NomComplet"
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -72,7 +83,7 @@ export const MemberCreate = () => {
         />
         <AutocompleteInput
           source="Qualification"
-          sx={{ width: "37%" }}
+          className={classes.inputSize}
           choices={qualification_choices}
         />
 
@@ -86,6 +97,7 @@ export const MemberCreate = () => {
           onChange={(e) => {
             handleSetContract(e);
           }}
+          className={classes.inputSize}
           source="TypeContrat"
           autoComplete="off"
           sx={{
@@ -94,6 +106,7 @@ export const MemberCreate = () => {
         />
         <DateInput
           source="DateEmbauche"
+          className={classes.inputSize}
           validate={[required()]}
           autoComplete="off"
           sx={{
@@ -102,6 +115,7 @@ export const MemberCreate = () => {
         />
         <DateInput
           source="DateFin"
+          className={classes.inputSize}
           label={
             contract === "CDI"
               ? "Date Fin Periode D'essai"
@@ -114,6 +128,7 @@ export const MemberCreate = () => {
         />
         <TextInput
           source="Discription"
+          className={classes.inputSize}
           label="Description"
           multiline
           autoComplete="off"
@@ -130,6 +145,7 @@ export const MemberCreate = () => {
           source="SituationActif"
           defaultValue={"Actif"}
           autoComplete="off"
+          className={classes.inputSize}
           sx={{
             width: "30rem",
           }}
@@ -139,6 +155,7 @@ export const MemberCreate = () => {
             { id: "oui", name: "oui" },
             { id: "non", name: "non" },
           ]}
+          className={classes.inputSize}
           validate={[required()]}
           source="assurance"
           defaultValue={"non"}
@@ -155,6 +172,7 @@ export const MemberCreate = () => {
           sx={{
             width: "30rem",
           }}
+          className={classes.inputSize}
           disabled={assure === "oui"}
         />
       </SimpleForm>
