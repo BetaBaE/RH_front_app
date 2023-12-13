@@ -1,19 +1,36 @@
-﻿import {
-  SelectInput,
-  Filter,
-  TextInput,
-  ReferenceInput,
-} from "ra-ui-materialui";
+﻿import { SelectInput, Filter, TextInput } from "ra-ui-materialui";
+import { AutocompleteInput } from "react-admin";
+import { getQualification } from "../../Global/getAssets.mjs";
+import { useEffect, useState } from "react";
 
 const MemberFilter = (props) => {
+  const [qualification, setQualification] = useState([]);
+  useEffect(() => {
+    getQualification()
+      .then((data) => {
+        setQualification(data);
+      })
+      .catch((error) => {
+        console.error("Error in fetching data:", error);
+      });
+  }, []);
+  const qualification_choices = qualification.map((item) => {
+    let id = item.id;
+    let name = item.libelle;
+    return { id, name };
+  });
   return (
     <Filter {...props}>
       <TextInput label="CIN" source="id" />
       <TextInput source="Matricule" />
       <TextInput source="NomComplet" />
-      <ReferenceInput source="Qualification" reference="Qualification">
+      {/* <ReferenceInput source="Qualification" reference="Qualification">
         <SelectInput optionText="libelle" />
-      </ReferenceInput>
+      </ReferenceInput> */}
+      <AutocompleteInput
+        source="Qualification"
+        choices={qualification_choices}
+      />
       <SelectInput
         choices={[
           { id: "CDI", name: "CDI" },
