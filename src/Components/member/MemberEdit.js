@@ -1,5 +1,6 @@
-﻿import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
+  AutocompleteInput,
   DateInput,
   Edit,
   ReferenceInput,
@@ -10,6 +11,7 @@ import {
   Toolbar,
   required,
 } from "react-admin";
+import { getQualification } from "../../Global/getAssets.mjs";
 
 const EditToolbar = (props) => (
   <Toolbar {...props}>
@@ -27,6 +29,23 @@ export const MemberEdit = (props) => {
     setRenouvellement(event.target.value);
   }
 
+  const [qualification, setQualification] = useState([]);
+  useEffect(() => {
+    getQualification()
+      .then((data) => {
+        setQualification(data);
+      })
+      .catch((error) => {
+        console.error("Error in fetching data:", error);
+      });
+  }, []);
+  const qualification_choices = qualification.map((item) => {
+    let id = item.id;
+    let name = item.libelle;
+    return { id, name };
+  });
+
+  console.log(qualification);
   // const [assure, setAssurance] = useState("");
   // function handleSetAssurance(event) {
   //   setAssurance(event.target.value);
@@ -55,19 +74,11 @@ export const MemberEdit = (props) => {
           }}
           validate={required()}
         />
-        <ReferenceInput
+        <AutocompleteInput
           source="Qualification"
-          reference="Qualification"
-          perPage={200}
-        >
-          <SelectInput
-            optionText="libelle"
-            sx={{
-              width: "30rem",
-            }}
-            validate={required()}
-          />
-        </ReferenceInput>
+          choices={qualification_choices}
+          sx={{ width: "37%" }}
+        />
         <SelectInput
           choices={[
             { id: "CDI", name: "CDI" },

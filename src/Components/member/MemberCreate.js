@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
   Create,
   DateInput,
@@ -8,7 +8,9 @@ import {
   TextInput,
   required,
   regex,
+  AutocompleteInput,
 } from "react-admin";
+import { getQualification } from "../../Global/getAssets.mjs";
 
 export const MemberCreate = () => {
   const [contract, setContract] = useState("");
@@ -19,10 +21,26 @@ export const MemberCreate = () => {
   function handleSetAssurance(event) {
     setAssurance(event.target.value);
   }
+  const [qualification, setQualification] = useState([]);
+  useEffect(() => {
+    getQualification()
+      .then((data) => {
+        setQualification(data);
+      })
+      .catch((error) => {
+        console.error("Error in fetching data:", error);
+      });
+  }, []);
+
   const validateCin = regex(
     /^[A-Z]{1,2}[0-9]{2,6}$/,
     "entrez une cin valide AA12345"
   );
+  const qualification_choices = qualification.map((item) => {
+    let id = item.id;
+    let name = item.libelle;
+    return { id, name };
+  });
 
   return (
     <Create>
@@ -52,26 +70,11 @@ export const MemberCreate = () => {
           }}
           validate={[required()]}
         />
-        <ReferenceInput
+        <AutocompleteInput
           source="Qualification"
-          reference="Qualification"
-          perPage={200}
-        >
-          <SelectInput
-            optionText="libelle"
-            autoComplete="off"
-            sx={{
-              width: "30rem",
-            }}
-            validate={[required()]}
-          />
-          {/* <AutocompleteInput
-            optionText="libelle"
-            sx={{
-              width: "30rem",
-            }}
-          /> */}
-        </ReferenceInput>
+          sx={{ width: "37%" }}
+          choices={qualification_choices}
+        />
 
         <SelectInput
           choices={[
