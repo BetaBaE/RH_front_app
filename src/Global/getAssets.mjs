@@ -1,4 +1,4 @@
-let apiURL = "http://10.111.1.95:8081/";
+let apiURL = "http://10.111.1.68:8081/";
 
 export const getQualification = async () => {
   try {

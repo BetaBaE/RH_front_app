@@ -24,7 +24,7 @@ function App(props) {
     <Admin
       authProvider={auth}
       {...props}
-      dataProvider={restProvider("http://10.111.1.95:8081")}
+      dataProvider={restProvider("http://10.111.1.68:8081")}
       // layout={MyLayout}
       darkTheme={{ palette: { mode: "dark" } }}
     >
