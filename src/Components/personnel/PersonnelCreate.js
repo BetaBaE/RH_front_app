@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Create,
   DateInput,
@@ -9,18 +9,20 @@ import {
   required,
   regex,
   AutocompleteInput,
+  useGetIdentity,
 } from "react-admin";
 import { getQualification } from "../../Global/getAssets.mjs";
+// import { useAuth } from "react-admin";
 
-export const MemberCreate = () => {
-  const [contract, setContract] = useState("");
-  function handleSetContract(event) {
-    setContract(event.target.value);
-  }
-  const [assure, setAssurance] = useState("");
-  function handleSetAssurance(event) {
-    setAssurance(event.target.value);
-  }
+export const PersonnelCreate = () => {
+  //   const [contract, setContract] = useState("");
+  //   function handleSetContract(event) {
+  //     setContract(event.target.value);
+  //   }
+  //   const [assure, setAssurance] = useState("");
+  //   function handleSetAssurance(event) {
+  //     setAssurance(event.target.value);
+  //   }
   const [qualification, setQualification] = useState([]);
   useEffect(() => {
     getQualification()
@@ -28,7 +30,7 @@ export const MemberCreate = () => {
         setQualification(data);
       })
       .catch((error) => {
-        console.error("Error in fetching data:", error);
+        console.error("Error in fetching qualification data:", error);
       });
   }, []);
 
@@ -41,10 +43,20 @@ export const MemberCreate = () => {
     let name = item.libelle;
     return { id, name };
   });
+  const { identity, isLoading: identityLoading } = useGetIdentity();
 
   return (
     <Create>
       <SimpleForm>
+        <TextInput
+          source="Redacteur"
+          disabled
+          autoComplete="off"
+          defaultValue={identity?.fullName ? identity.fullName : "admin"}
+          sx={{
+            width: "30rem",
+          }}
+        />
         <TextInput
           label="CIN"
           source="id"
@@ -63,98 +75,54 @@ export const MemberCreate = () => {
           validate={[required()]}
         />
         <TextInput
-          source="NomComplet"
+          source="Nom"
           autoComplete="off"
           sx={{
             width: "30rem",
           }}
           validate={[required()]}
+        />
+        <TextInput
+          source="Prenom"
+          autoComplete="off"
+          sx={{
+            width: "30rem",
+          }}
+          validate={[required()]}
+        />
+        <DateInput
+          source="dateNaissance"
+          validate={[required()]}
+          autoComplete="off"
+          sx={{
+            width: "30rem",
+          }}
         />
         <AutocompleteInput
           source="Qualification"
           choices={qualification_choices}
         />
 
-        <SelectInput
-          choices={[
-            { id: "CDI", name: "CDI" },
-            { id: "CDD", name: "CDD" },
-            { id: "STAGE", name: "STAGE" },
-          ]}
-          validate={[required()]}
-          onChange={(e) => {
-            handleSetContract(e);
-          }}
-          source="TypeContrat"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
-        <DateInput
-          source="DateEmbauche"
-          validate={[required()]}
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
-        <DateInput
-          source="DateFin"
-          label={
-            contract === "CDI"
-              ? "Date Fin Periode D'essai"
-              : "Date Fin De Contrat"
-          }
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
         <TextInput
-          source="Discription"
-          label="Description"
-          multiline
+          source="Observation"
           autoComplete="off"
           sx={{
             width: "30rem",
           }}
         />
+
         <SelectInput
           choices={[
             { id: "Actif", name: "Actif" },
             { id: "Sortant", name: "Sortant" },
           ]}
           validate={[required()]}
-          source="SituationActif"
           defaultValue={"Actif"}
+          source="SituationActif"
           autoComplete="off"
           sx={{
             width: "30rem",
           }}
-        />
-        <SelectInput
-          choices={[
-            { id: "oui", name: "oui" },
-            { id: "non", name: "non" },
-          ]}
-          validate={[required()]}
-          source="assurance"
-          defaultValue={"non"}
-          onChange={handleSetAssurance}
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
-        <DateInput
-          source="dateAssurance"
-          label="DATE ALERT ASSURANCES"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-          disabled={assure === "oui"}
         />
       </SimpleForm>
     </Create>

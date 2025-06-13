@@ -16,13 +16,15 @@ export const RenouvellementList = ({ ...props }) => {
       <Datagrid bulkActionButtons={false}>
         {/* <TextField source="id" /> */}
         <TextField source="cin" />
+        <TextField source="NomComplet" />
         <TextField source="Matricule" />
         <ReferenceField source="Qualification" reference="Qualification">
           <TextField source="libelle" />
         </ReferenceField>
         <TextField sortable={false} source="Discription" />
-        <DateField source="DateEmbauche" />
         <DateField source="Renouvellement" />
+        <DateField source="datefinRenouvellement" />
+        <DateField source="DateEmbauche" />
         <DateField source="DateFin" />
         <DateField source="DateInsertion" />
       </Datagrid>

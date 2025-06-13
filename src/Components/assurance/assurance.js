@@ -15,7 +15,11 @@ const AssuranceRow = (record, index) => {
   let dateFinal = (dateAssurance - dateNow) / (1000 * 24 * 60 * 60);
 
   if (record.assure === "non") {
-    if (dateFinal < 0)
+    if (dateFinal < -10)
+      return {
+        backgroundColor: "#fff",
+      };
+    else if (dateFinal < 0)
       return {
         backgroundColor: "#fff380",
       };

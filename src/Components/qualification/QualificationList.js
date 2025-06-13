@@ -1,18 +1,10 @@
-import {
-  Datagrid,
-  DeleteButton,
-  EditButton,
-  List,
-  TextField,
-} from "react-admin";
+import { Datagrid, List, TextField } from "react-admin";
 
-export const QualificationList = () => {
+export const QualificationList = (props) => {
   return (
-    <List>
-      <Datagrid>
+    <List {...props}>
+      <Datagrid bulkActionButtons={false} rowClick="edit">
         <TextField source="libelle" />
-        <EditButton />
-        <DeleteButton />
       </Datagrid>
     </List>
   );

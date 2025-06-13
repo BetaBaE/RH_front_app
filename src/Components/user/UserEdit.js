@@ -32,8 +32,8 @@ export const UserEdit = (props) => {
           validate={required("Le Role est obligatoire")}
           source="Role"
           choices={[
-            { id: "administration rh", name: "Administration RH" },
-            { id: "assistante rh", name: "Assistante RH" },
+            { id: "gKIJQelDba8s4YdO", name: "Administration RH" },
+            { id: "FlOpM57clI8qFthm", name: "Assistante RH" },
             //   { id: "photography", name: "Photography" },
           ]}
         />

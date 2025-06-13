@@ -1,30 +1,31 @@
-﻿import {
-  Datagrid,
-  DateField,
-  List,
-  ReferenceField,
-  TextField,
-} from "react-admin";
+import { Datagrid, DateField, List, TextField } from "react-admin";
 import MemberFilter from "./MemberFilter";
 
 const memberRowStyle = (record, index) => {
   let today = new Date();
   let dateFin = new Date(record.DateFin);
+  let datefinRenouvellement = new Date(record.datefinRenouvellement);
   let nbDay = (dateFin - today) / (1000 * 24 * 60 * 60);
-  console.log(nbDay);
+  let nbfr = (datefinRenouvellement - today) / (1000 * 24 * 60 * 60);
 
-  if (nbDay < -10) {
+  if (datefinRenouvellement !== "") {
+    if (nbfr < -10 && nbDay < -10) {
+      return {
+        backgroundColor: "#fff",
+      };
+    } else if (nbfr < -1 && nbDay < -1) {
+      return {
+        backgroundColor: "#fff380",
+      };
+    } else if (nbfr < 30 && nbDay < 30)
+      return {
+        backgroundColor: "#ffcbd0",
+      };
+  } else {
     return {
       backgroundColor: "#fff",
     };
-  } else if (nbDay < -1) {
-    return {
-      backgroundColor: "#fff380",
-    };
-  } else if (nbDay < 30)
-    return {
-      backgroundColor: "#ffcbd0",
-    };
+  }
 };
 
 export const MemberList = (props) => {
@@ -35,20 +36,18 @@ export const MemberList = (props) => {
         rowStyle={memberRowStyle}
         rowClick="edit"
         {...props}
-        // sort={{ field: "id", order: "DESC" }}
       >
         <TextField source="Matricule" />
         <TextField label="CIN" source="id" />
         <TextField source="NomComplet" />
-        <ReferenceField source="Qualification" reference="Qualification">
-          <TextField source="libelle" />
-        </ReferenceField>
+        <TextField source="Qualification" />
         <TextField source="TypeContrat" />
         <DateField source="DateEmbauche" />
         <DateField source="DateFin" />
         <TextField source="Discription" label="Description" />
         <TextField source="SituationActif" />
         <DateField source="Renouvellement" />
+        <DateField source="datefinRenouvellement" />
       </Datagrid>
     </List>
   );

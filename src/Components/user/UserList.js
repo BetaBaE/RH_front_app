@@ -12,7 +12,15 @@ export const UserList = () => (
     <Datagrid rowClick="edit" bulkActionButtons={false}>
       <TextField source="fullname" />
       <TextField source="username" />
-      <TextField source="Role" />
+      {/* <TextField source="Role" /> */}
+      <FunctionField
+        label="Role"
+        render={(record) =>
+          record.Role === "gKIJQelDba8s4YdO"
+            ? "Administration RH"
+            : "Assistante RH"
+        }
+      />
       <FunctionField
         label="isActivated"
         render={(record) =>
