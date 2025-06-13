@@ -1,5 +1,4 @@
-﻿import { makeStyles } from "@material-ui/styles";
-import {
+﻿import {
   Datagrid,
   DateField,
   List,
@@ -7,18 +6,11 @@ import {
   TextField,
 } from "react-admin";
 import RenouvellementFilter from "./RenouvellementFilter";
-const useStyles = makeStyles(() => ({
-  root: {
-    marginTop: "30px",
-  },
-}));
 
 export const RenouvellementList = ({ ...props }) => {
-  const classes = useStyles(props);
   return (
     <List
       filters={<RenouvellementFilter />}
-      className={classes.root}
       // sort={{ field: "DateInsertion", order: "ASC" }}
     >
       <Datagrid bulkActionButtons={false}>

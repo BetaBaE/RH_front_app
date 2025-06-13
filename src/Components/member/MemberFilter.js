@@ -1,9 +1,4 @@
-﻿import {
-  SelectInput,
-  Filter,
-  TextInput,
-  ReferenceInput,
-} from "ra-ui-materialui";
+﻿import { SelectInput, Filter, TextInput, ReferenceInput } from "react-admin";
 
 const MemberFilter = (props) => (
   <Filter {...props}>

@@ -5,14 +5,7 @@
   ReferenceField,
   TextField,
 } from "react-admin";
-import { makeStyles } from "@material-ui/styles";
 import MemberFilter from "./MemberFilter";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    marginTop: "30px",
-  },
-}));
 
 const memberRowStyle = (record, index) => {
   let today = new Date();
@@ -35,9 +28,8 @@ const memberRowStyle = (record, index) => {
 };
 
 export const MemberList = (props) => {
-  const classes = useStyles(props);
   return (
-    <List filters={<MemberFilter />} className={classes.root}>
+    <List filters={<MemberFilter />}>
       <Datagrid
         bulkActionButtons={false}
         rowStyle={memberRowStyle}
