@@ -12,6 +12,7 @@ import {
   useGetIdentity,
 } from "react-admin";
 import { getQualification } from "../../Global/getAssets.mjs";
+import { Grid } from "@mui/material";
 // import { useAuth } from "react-admin";
 
 export const PersonnelCreate = () => {
@@ -48,82 +49,92 @@ export const PersonnelCreate = () => {
   return (
     <Create>
       <SimpleForm>
-        <TextInput
-          source="Redacteur"
-          disabled
-          autoComplete="off"
-          defaultValue={identity?.fullName ? identity.fullName : "admin"}
-          sx={{
-            width: "30rem",
-          }}
-        />
-        <TextInput
-          label="CIN"
-          source="id"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-          validate={[validateCin, required("entrez le cin ")]}
-        />
-        <TextInput
-          source="Matricule"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-          validate={[required()]}
-        />
-        <TextInput
-          source="Nom"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-          validate={[required()]}
-        />
-        <TextInput
-          source="Prenom"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-          validate={[required()]}
-        />
-        <DateInput
-          source="dateNaissance"
-          validate={[required()]}
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
-        <AutocompleteInput
-          source="Qualification"
-          choices={qualification_choices}
-        />
-
-        <TextInput
-          source="Observation"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
-
-        <SelectInput
-          choices={[
-            { id: "Actif", name: "Actif" },
-            { id: "Sortant", name: "Sortant" },
-          ]}
-          validate={[required()]}
-          defaultValue={"Actif"}
-          source="SituationActif"
-          autoComplete="off"
-          sx={{
-            width: "30rem",
-          }}
-        />
+        <Grid container spacing={2} sx={{ width: "100%" }}>
+          <Grid md={6}>
+            <TextInput
+              label="CIN"
+              source="id"
+              autoComplete="off"
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+              validate={[validateCin, required("entrez le cin ")]}
+            />
+          </Grid>
+          <Grid md={6}>
+            <TextInput
+              source="Matricule"
+              autoComplete="off"
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+              validate={[required()]}
+            />
+          </Grid>
+          <Grid md={6}>
+            <TextInput
+              source="Nom"
+              autoComplete="off"
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+              validate={[required()]}
+            />
+          </Grid>
+          <Grid md={6}>
+            <TextInput
+              source="Prenom"
+              autoComplete="off"
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+              validate={[required()]}
+            />
+          </Grid>
+          <Grid md={6}>
+            <DateInput
+              source="dateNaissance"
+              validate={[required()]}
+              autoComplete="off"
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+            />
+          </Grid>
+          <Grid md={6}>
+            <AutocompleteInput
+              source="Qualification"
+              choices={qualification_choices}
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+            />
+          </Grid>
+          <Grid md={6}>
+            <TextInput
+              source="Observation"
+              autoComplete="off"
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+            />
+          </Grid>
+          <Grid md={6}>
+            <SelectInput
+              choices={[
+                { id: "Actif", name: "Actif" },
+                { id: "Sortant", name: "Sortant" },
+              ]}
+              validate={[required()]}
+              defaultValue={"Actif"}
+              sx={{
+                width: { xs: "100%", md: "30rem" }, // full width on mobile, fixed on desktop
+              }}
+              source="SituationActif"
+              autoComplete="off"
+            />
+          </Grid>
+        </Grid>
       </SimpleForm>
     </Create>
   );
