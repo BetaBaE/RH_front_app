@@ -1,4 +1,4 @@
-import { Admin, Resource } from "react-admin";
+import { Admin, EditGuesser, Resource } from "react-admin";
 import restProvider from "ra-data-simple-rest";
 import { MemberList } from "./Components/member/MemberList";
 import { MemberCreate } from "./Components/member/MemberCreate";
@@ -18,13 +18,17 @@ import { UserList } from "./Components/user/UserList";
 import { UserEdit } from "./Components/user/UserEdit";
 import { auth } from "./authProvider";
 import PrintPdf from "./Components/print/PrintPdf";
+import { PersonnelList } from "./Components/personnel/PersonnelList";
+import { PersonnelCreate } from "./Components/personnel/PersonnelCreate";
+import { PersonnelEdit } from "./Components/personnel/PersonnelEdit";
 
 function App(props) {
   return (
     <Admin
-      authProvider={auth}
-      {...props}
-      dataProvider={restProvider("http://10.111.1.68:8081")}
+      // authProvider={auth}
+      // {...props}
+      dataProvider={restProvider("http://localhost:8081")}
+      // http://10.111.1.68
       // layout={MyLayout}
       darkTheme={{ palette: { mode: "dark" } }}
     >
@@ -49,6 +53,14 @@ function App(props) {
             icon={BsPersonLinesFill}
           />
         ) : null,
+
+        <Resource
+          name="Personnel"
+          list={PersonnelList}
+          create={PersonnelCreate}
+          edit={PersonnelEdit}
+          // icon={BsPersonLinesFill}
+        />,
         permissions === "gKIJQelDba8s4YdO" ||
         permissions === "FlOpM57clI8qFthm" ? (
           <Resource

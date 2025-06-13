@@ -1,4 +1,4 @@
-let apiURL = "http://10.111.1.68:8081/";
+let apiURL = "http://localhost:8081/";
 
 export const getQualification = async () => {
   try {
@@ -11,7 +11,7 @@ export const getQualification = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error.message);
     return [];
   }
 };

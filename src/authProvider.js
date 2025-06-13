@@ -1,6 +1,7 @@
 export const auth = {
   login: ({ username, password }) => {
-    const request = new Request("http://10.111.1.68:8081/auth", {
+    const request = new Request("http://localhost:8081/users", {
+      // http://10.111.1.68:8081/auth
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: new Headers({ "Content-Type": "application/json" }),
